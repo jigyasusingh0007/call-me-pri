@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Prishi ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #3a0d1f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+}
+
+/* Card */
+.card {
+    width: 90%;
+    max-width: 420px;
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 0 40px rgba(255,0,80,0.3);
+    text-align: center;
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+h1 {
+    color: #ff4d6d;
+    text-shadow: 0 0 10px #ff4d6d;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.typing {
+    border-right: 2px solid #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 5s steps(40), blink 0.7s infinite;
+}
+
+@keyframes typing {
+    from {width: 0}
+    to {width: 100%}
+}
+
+@keyframes blink {
+    50% {border-color: transparent}
+}
+
+/* Button */
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(45deg, #ff4d6d, #ff1e4d);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(255,0,80,0.6);
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    color: rgba(255,0,80,0.7);
+    font-size: 20px;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* Name */
+.name {
+    font-size: 28px;
+    color: #ff4d6d;
+    text-shadow: 0 0 15px #ff4d6d;
+    margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎧 Music -->
+<audio id="music" loop>
+    <source src="song.mp3">
+</audio>
+
+<div class="card">
+    <div class="name">Prishi ❤️</div>
+
+    <h1>Hey…</h1>
+
+    <p class="typing">
+        I know you can't call when Papa is around...
+    </p>
+
+    <p>
+        And I really understand that… I do.<br><br>
+
+        But still… sometimes it feels like  
+        I wait for you… a little more than I should 💔<br><br>
+
+        Not for long talks…  
+        just for a few seconds… your voice…<br><br>
+
+        Because somehow…  
+        that one call makes my whole day feel okay 🙂
+    </p>
+
+    <p style="font-size:13px; opacity:0.7;">
+        (tap anywhere if music doesn't start)
+    </p>
+
+    <button onclick="callMe()">Just call me once ❤️</button>
+</div>
+
+<script>
+
+// 🎧 Music Fix
+let music = document.getElementById("music");
+
+window.onload = () => {
+    let playPromise = music.play();
+
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            document.body.addEventListener("click", startMusicOnce);
+        });
+    }
+};
+
+function startMusicOnce() {
+    music.play();
+    document.body.removeEventListener("click", startMusicOnce);
+}
+
+// 💖 Floating hearts
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = Math.random() > 0.5 ? "❤️" : "Prishi";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}, 300);
+
+// 📞 Call button
+function callMe() {
+    alert("बस एक कॉल कर दो ना… 💔");
+
+    // CHANGE YOUR NUMBER HERE
+    window.location.href = "tel:+919341251039";
+}
+
+</script>
+
+</body>
+</html>
